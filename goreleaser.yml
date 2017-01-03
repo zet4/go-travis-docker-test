@@ -1,0 +1,2 @@
+repo: zet4/go-travis-docker-test
+binary_name: counter-test
