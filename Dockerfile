@@ -1,4 +1,4 @@
 FROM scratch
-ADD main /
+ADD counter-test /
 EXPOSE 3333
-CMD ["/main"]
+CMD ["/counter-test"]
