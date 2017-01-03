@@ -16,5 +16,5 @@ after_success:
         docker build -t zet4/go-travis-docker-test; 
         docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
         docker push zet4/go-travis-docker-test;
-    fi
+        fi
     - test -n "$TRAVIS_TAG" && curl -s https://raw.githubusercontent.com/goreleaser/get/master/latest | bash
