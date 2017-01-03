@@ -11,17 +11,15 @@ var _ = Describe("Lib", func() {
 	Describe("Counter stuff", func() {
 		Context("Counter is zero", func() {
 			It("should return 0 after first call", func() {
+				lib.Reset()
 				val := lib.IncrementAndReturn()
 				Expect(val).To(Equal(uint64(0)))
 			})
 			It("should return 1 after second call", func() {
-				val := lib.IncrementAndReturn()
-				Expect(val).To(Equal(uint64(1)))
-			})
-			It("should return 0 after reset and third call", func() {
 				lib.Reset()
 				val := lib.IncrementAndReturn()
-				Expect(val).To(Equal(uint64(0)))
+				val = lib.IncrementAndReturn()
+				Expect(val).To(Equal(uint64(1)))
 			})
 		})
 	})
