@@ -13,8 +13,8 @@ scripts:
     - ./test.sh
 after_success:
     - bash <(curl -s https://codecov.io/bash)
-    - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o counter-test .;
     - if [ "$TRAVIS_BRANCH" == "master" ]; then
+        CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o counter-test .;
         docker build -t zeta0/go-travis-docker-test .; 
         docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
         docker push zeta0/go-travis-docker-test;
@@ -23,5 +23,12 @@ after_success:
         docker build -t zeta0/go-travis-docker-test:$TRAVIS_TAG .; 
         docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
         docker push zeta0/go-travis-docker-test:$TRAVIS_TAG;
-        curl -s https://raw.githubusercontent.com/goreleaser/get/master/latest | bash;
+        bash <(curl -s https://raw.githubusercontent.com/goreleaser/get/master/latest);
+        fi
+    - if [ -z "$TRAVIS_TAG" ]; then
+        CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o counter-test .;
+        docker build -t zeta0/go-travis-docker-test:nightly .; 
+        docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+        docker push zeta0/go-travis-docker-test:nightly;
+        bash <(curl -s https://raw.githubusercontent.com/goreleaser/get/master/latest) -c goreleaser.nightly.yml;
         fi

@@ -1,0 +1,10 @@
+repo: zet4/go-travis-docker-test
+binary_name: counter-test-nightly
+build:
+  arches:
+    - amd64
+    - 386
+  oses:
+    - windows
+    - darwin
+    - linux
