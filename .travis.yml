@@ -19,7 +19,7 @@ after_success:
         docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
         docker push zeta0/go-travis-docker-test;
         fi
-    - if [ test -n "$TRAVIS_TAG" ]; then
+    - if [ -n "$TRAVIS_TAG" ]; then
         docker build -t zeta0/go-travis-docker-test:$TRAVIS_TAG .; 
         docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
         docker push zeta0/go-travis-docker-test:$TRAVIS_TAG;
