@@ -19,4 +19,9 @@ after_success:
         docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
         docker push zeta0/go-travis-docker-test;
         fi
-    - test -n "$TRAVIS_TAG" && curl -s https://raw.githubusercontent.com/goreleaser/get/master/latest | bash
+    - if [ test -n "$TRAVIS_TAG" ]; then
+        docker build -t zeta0/go-travis-docker-test:$TRAVIS_TAG .; 
+        docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+        docker push zeta0/go-travis-docker-test:$TRAVIS_TAG;
+        curl -s https://raw.githubusercontent.com/goreleaser/get/master/latest | bash;
+        fi
