@@ -20,6 +20,7 @@ after_success:
         docker push zeta0/go-travis-docker-test;
         fi
     - if [ -n "$TRAVIS_TAG" ]; then
+        CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o counter-test .;
         docker build -t zeta0/go-travis-docker-test:$TRAVIS_TAG .;
         docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
         docker push zeta0/go-travis-docker-test:$TRAVIS_TAG;
