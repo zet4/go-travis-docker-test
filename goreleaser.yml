@@ -1,10 +1,11 @@
-repo: zet4/go-travis-docker-test
-binary_name: counter-test
+release:
+  repo: zet4/go-travis-docker-test
 build:
-  arches:
+  binary_name: counter-test
+  goarch:
     - amd64
     - 386
-  oses:
+  goos:
     - windows
     - darwin
     - linux
