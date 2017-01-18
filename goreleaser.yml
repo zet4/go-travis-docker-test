@@ -4,7 +4,6 @@ build:
   binary_name: counter-test
   goarch:
     - amd64
-    - 386
   goos:
     - windows
     - darwin
