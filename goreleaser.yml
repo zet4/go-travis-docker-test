@@ -1,7 +1,9 @@
 release:
-  repo: zet4/go-travis-docker-test
+  github: 
+    owner: zet4
+    name: go-travis-docker-test
 build:
-  binary_name: counter-test
+  binary: counter-test
   goarch:
     - amd64
   goos:
